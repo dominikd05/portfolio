@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/*
+==============================================
+  ORGANIC RIBBON ANIMATIONS
+==============================================
+*/
+
+/* --- The Animation Keyframes --- */
+
+/* 1. "Draw" animation */
+@keyframes draw-ribbon {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Infinite "Pulse" animation */
+@keyframes pulse-ribbon {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 2000; /* Moves the "gap" along the line */
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- Base Styling for the Hero Ribbon --- */
+.hero-ribbon path {
+  fill: none;
+  stroke: #4f46e5;
+  stroke-width: 20px;
+
+  stroke-dasharray: 1000 1200;
+  stroke-dashoffset: 1500;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Dual-Animation Trigger Class --- */
+
+.animated-hero-ribbon {
+  animation:
+    draw-ribbon 2.5s cubic-bezier(0.65, 0, 0.35, 1) 0s forwards,
+    pulse-ribbon 15s cubic-bezier(0.65, 0, 0.35, 1) 2.5s infinite;
+}
+
+/*
+==============================================
+  HERO SECTION ANIMATIONS
+==============================================
+*/
+
+/* --- Animated Headline (On Page Load) --- */
+/* Keyframes for the word animation */
+@keyframes hero-word-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base style for each word */
+.hero-headline > span {
+  display: inline-block;
+  opacity: 0;
+  animation: hero-word-in 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Staggered delays for each word to appear one by one */
+.hero-headline > span:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.hero-headline > span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.hero-headline > span:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.hero-headline > span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+/* --- Other Hero Animations (On Page Load) --- */
+@keyframes simple-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-on-load-fade-in {
+  animation: simple-fade-in 1s ease-in-out 0.8s both;
+}
+.animate-on-load-subtle-fade {
+  animation: simple-fade-in 1s ease-in-out 1s both;
+}
+.animate-on-load-fade-in-late {
+  animation: simple-fade-in 1s ease-in-out 1.2s both;
+}
+
+/*
+==============================================
+  SCROLL ANIMATION LIBRARY
+==============================================
+*/
+
+/* --- Your existing keyframes (fade-in-up, etc.) --- */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes scale-and-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Scroll animation classes --- */
+.animate-on-scroll {
+  animation-timeline: view();
+  animation-range: entry 5% cover 50%;
+  animation-fill-mode: both;
+}
+.animate-fade-up {
+  animation-name: fade-in-up;
+  animation-timing-function: ease-out;
+}
+.animate-fade-in {
+  animation-name: fade-in;
+  animation-timing-function: ease-in-out;
+}
+.animate-scale-in {
+  animation-name: scale-and-fade;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- Stagger utilities --- */
+.delay-100ms {
+  animation-delay: 100ms;
+}
+.delay-200ms {
+  animation-delay: 200ms;
+}
+.delay-300ms {
+  animation-delay: 300ms;
+}
+.delay-400ms {
+  animation-delay: 400ms;
+}
+.delay-500ms {
+  animation-delay: 500ms;
+}
